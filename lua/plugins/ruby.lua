@@ -15,9 +15,19 @@ return {
       },
     },
   },
+  -- Endwise
+  {
+    "RRethy/nvim-treesitter-endwise",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        endwise = {
+          enable = true,
+        },
+      })
+    end,
+  },
 
-  -- { "melopilosyan/rspec-integrated.nvim" },
-  -- Configure conform.nvim for formatting
   {
     "stevearc/conform.nvim",
     opts = {
@@ -32,7 +42,6 @@ return {
     },
   },
 
-  -- Make sure standardrb formatter is available
   {
     "williamboman/mason.nvim",
     opts = {
