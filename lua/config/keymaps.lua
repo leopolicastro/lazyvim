@@ -4,3 +4,17 @@
 
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "<CR>", ":w<CR>", { noremap = true, silent = true })
+
+oim.keymap.set("n", "<leader>bo", function()
+  local snacks_bufname = "snacks://" -- adjust this if your snacks buffer uses a different pattern
+
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    local name = vim.api.nvim_buf_get_name(buf)
+    if name ~= "" and not name:match("^" .. snacks_bufname) then
+      pcall(vim.api.nvim_buf_delete, buf, { force = true })
+    end
+  end
+
+  -- Open a fresh empty buffer
+  vim.cmd("enew")
+end, { desc = "Close all buffers except Snacks" })
