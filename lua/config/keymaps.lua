@@ -5,7 +5,7 @@
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "<CR>", ":w<CR>", { noremap = true, silent = true })
 
-oim.keymap.set("n", "<leader>bo", function()
+vim.keymap.set("n", "<leader>bo", function()
   local snacks_bufname = "snacks://" -- adjust this if your snacks buffer uses a different pattern
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -18,3 +18,13 @@ oim.keymap.set("n", "<leader>bo", function()
   -- Open a fresh empty buffer
   vim.cmd("enew")
 end, { desc = "Close all buffers except Snacks" })
+
+vim.keymap.set("n", "<leader>cp", function()
+  local filepath = vim.fn.expand("%")
+  if filepath == "" then
+    vim.notify("No file in current buffer", vim.log.levels.WARN)
+    return
+  end
+  vim.fn.setreg("+", filepath)
+  vim.notify("Copied to clipboard: " .. filepath)
+end, { desc = "Copy file path to clipboard" })
