@@ -34,6 +34,8 @@ return {
       formatters_by_ft = {
         ruby = { "standardrb" },
         eruby = { "htmlbeautifier" }, -- Add ERB formatting
+        css = { "prettier" },
+        scss = { "prettier" },
       },
       -- format_on_save = {
       --   timeout_ms = 500,
